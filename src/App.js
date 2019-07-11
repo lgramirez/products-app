@@ -18,6 +18,7 @@ function App(props) {
         >
           Learn React
         </a>
+        <p>{props.name}</p>
       </header>
     </div>
   );
