@@ -13,7 +13,7 @@ class ChangeColorButton extends React.Component {
     render() {
         return (
             <button onClick={this.handleClick}>
-                Change Color
+                I do not like {this.props.currentColor}
             </button>
         );
     }

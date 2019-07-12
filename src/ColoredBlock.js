@@ -6,7 +6,7 @@ class ColoredBlock extends React.Component {
         super(props);
         this.changeColor = this.changeColor.bind(this);
         this.state = {
-            backgroundColor: 'red'
+            color: 'red',
         }
     }
 
@@ -16,18 +16,26 @@ class ColoredBlock extends React.Component {
         // this.setState({
         //     backgroundColor: newColor
         // });
-        this.setState((prevState) => {
-            let newColor = prevState.backgroundColor === "red" ? "blue" : "red";
-            return {
-                backgroundColor: newColor
-            };
-        });
+
+        /* otra forma de hacer lo mismo*/
+        // this.setState((prevState) => {
+        //     let newColor = prevState.backgroundColor === "red" ? "blue" : "red";
+        //     return {
+        //         backgroundColor: newColor,
+        //         title: newTitle
+        //     };
+        // });
+
+        //otra forma
+        this.setState((prevState, props) => ({
+            color: prevState.color === 'red' ? 'blue' : 'red'
+        }));
     }
 
     render() {
         return (
-            <div style={{width: "200px", height: "200px", backgroundColor: this.state.backgroundColor}}>
-                <ChangeColorButton click={this.changeColor}/>
+            <div style={{width: "200px", height: "200px", backgroundColor: this.state.color}}>
+                <ChangeColorButton click={this.changeColor} currentColor={this.state.color}/>
             </div>
         );
     }
