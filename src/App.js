@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Clock from './Clock.js';
 
 function App(props) {
   return (
@@ -19,6 +20,7 @@ function App(props) {
           Learn React
         </a>
         <p>{props.name}</p>
+        <Clock />
       </header>
     </div>
   );
