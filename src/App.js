@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Clock from './Clock.js';
+import EventHandler from './EventHandler.js';
 
 function App(props) {
   return (
@@ -21,6 +22,7 @@ function App(props) {
         </a>
         <p>{props.name}</p>
         <Clock />
+        <EventHandler />
       </header>
     </div>
   );
