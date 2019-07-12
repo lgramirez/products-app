@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Clock from './Clock.js';
 import EventHandler from './EventHandler.js';
+import ColoredBlock from './ColoredBlock.js';
 
 function App(props) {
   return (
@@ -23,6 +24,7 @@ function App(props) {
         <p>{props.name}</p>
         <Clock />
         <EventHandler />
+        <ColoredBlock />
       </header>
     </div>
   );
