@@ -4,6 +4,7 @@ import './App.css';
 import Clock from './Clock.js';
 import EventHandler from './EventHandler.js';
 import ColoredBlock from './ColoredBlock.js';
+import Products from './Products.js';
 
 function App(props) {
   return (
@@ -25,6 +26,7 @@ function App(props) {
         <Clock />
         <EventHandler />
         <ColoredBlock />
+        <Products />
       </header>
     </div>
   );
