@@ -17,7 +17,8 @@ class ProductForm extends React.Component {
         this.props.onSave(this.state.product);
         // reset form values to blank after submitting
         this.setState({
-            product: Object.assign({}, RESET_VALUES)
+            product: Object.assign({}, RESET_VALUES),
+            errors: {}
         });
         // prevent the form submit event from triggering an HTTP Post
         e.preventDefault();
