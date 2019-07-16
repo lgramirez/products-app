@@ -4,7 +4,6 @@ import './SortableColumnHeader.css';
 class SortableColumnHeader extends React.Component {
     render() {
         let currentSort = this.props.currentSort.column === this.props.column ? this.props.currentSort.direction : false;
-        console.log(currentSort);
         return (
             <th>
                 {this.props.column}
