@@ -7,6 +7,7 @@ class ProductTable extends React.Component {
         super(props);
         this.sortByColumnAndDirection = this.sortByColumnAndDirection.bind(this);
         this.handleDestroy = this.handleDestroy.bind(this);
+        this.handleSort = this.handleSort.bind(this);
         this.state = {
             sort: {
                 column: "name",
@@ -17,6 +18,10 @@ class ProductTable extends React.Component {
 
     handleDestroy(id) {
         this.props.onDestroy(id);
+    }
+
+    handleSort(values) {
+        this.setState({sort: {column: values.column, direction: values.direction}});
     }
 
     sortByColumnAndDirection(objectA, objectB) {
@@ -51,8 +56,8 @@ class ProductTable extends React.Component {
             <table>
                 <thead>
                     <tr>
-                        <SortableColumnHeader currentSort={this.state.sort} column="name"/>
-                        <SortableColumnHeader currentSort={this.state.sort} column="price"/>
+                        <SortableColumnHeader currentSort={this.state.sort} onSort={this.handleSort} column="name"/>
+                        <SortableColumnHeader currentSort={this.state.sort} onSort={this.handleSort} column="price"/>
                     </tr>
                 </thead>
                 <tbody>
