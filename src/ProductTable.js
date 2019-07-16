@@ -6,12 +6,17 @@ class ProductTable extends React.Component {
     constructor(props) {
         super(props);
         this.sortByColumnAndDirection = this.sortByColumnAndDirection.bind(this);
+        this.handleDestroy = this.handleDestroy.bind(this);
         this.state = {
             sort: {
                 column: "name",
                 direction: "desc"
             }
         };
+    }
+
+    handleDestroy(id) {
+        this.props.onDestroy(id);
     }
 
     sortByColumnAndDirection(objectA, objectB) {
@@ -40,7 +45,7 @@ class ProductTable extends React.Component {
             if(product.name.indexOf(this.props.filterText) === -1 || (!product.stocked && this.props.inStockOnly)){
                 return;
             }
-            rows.push(<ProductRow product={product} key={product.id} />);
+            rows.push(<ProductRow product={product} key={product.id} onDestroy={this.handleDestroy}/>);
         });
         return (
             <table>

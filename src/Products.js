@@ -17,6 +17,7 @@ class Products extends React.Component {
         super(props);
         this.handlerFilter = this.handlerFilter.bind(this);
         this.saveProduct = this.saveProduct.bind(this);
+        this.handleDestroy = this.handleDestroy.bind(this);
         this.state = {
             filterText: '',
             inStockOnly: false,
@@ -37,18 +38,19 @@ class Products extends React.Component {
         });
     }
 
-    // handleDestroy(id) {
-    //     this.setState((prevState) => {
-    //         let products = prevState.products;
-
-    //     });
-    // }
+    handleDestroy(id) {
+        this.setState((prevState) => {
+            let products = prevState.products;
+            delete products[id];
+            return {products};
+        });
+    }
 
     render() {
         return (
             <div>
                 <Filters filterText={this.state.filterText} inStockOnly={this.state.inStockOnly} onFilter={this.handlerFilter} />
-                <ProductTable products={this.state.products} filterText={this.state.filterText} inStockOnly={this.state.inStockOnly} />
+                <ProductTable products={this.state.products} filterText={this.state.filterText} inStockOnly={this.state.inStockOnly} onDestroy={this.handleDestroy}/>
                 <ProductForm onSave={this.saveProduct} />
             </div>
         );
