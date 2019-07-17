@@ -18,10 +18,12 @@ class Products extends React.Component {
         this.handlerFilter = this.handlerFilter.bind(this);
         this.saveProduct = this.saveProduct.bind(this);
         this.handleDestroy = this.handleDestroy.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
         this.state = {
             filterText: '',
             inStockOnly: false,
-            products: PRODUCTS
+            products: PRODUCTS,
+            formProduct: {id: '', category: '', price: '', stocked: false, name: ''}
         };
     }
 
@@ -30,12 +32,21 @@ class Products extends React.Component {
     }
 
     saveProduct(product) {
-        this.setState((prevState) => {
-            let products = prevState.products;
-            product.id = products[Object.keys(products).length].id + 1;
-            products[product.id] = product;
-            return {products};
-        });
+        if(product.id){
+            this.setState((prevState) => {
+                let products = prevState.products;
+                products[product.id] = product;
+                return {products};
+            });
+        }else{
+            this.setState((prevState) => {
+                let products = prevState.products;
+                product.id = products[Object.keys(products).length].id + 1;
+                products[product.id] = product;
+                return {products};
+            });
+        }
+        this.setState({formProduct: {id: '', category: '', price: '', stocked: false, name: ''}})
     }
 
     handleDestroy(id) {
@@ -46,12 +57,22 @@ class Products extends React.Component {
         });
     }
 
+    handleEdit(id) {
+        this.setState((prevState) => {
+            let productsArray = Object.keys(prevState.products).map((p) => {
+                return prevState.products[p];
+            });
+            let index = productsArray.findIndex((a) => a.id===id);
+            return { formProduct: productsArray[index]};
+        });
+    }
+
     render() {
         return (
             <div>
                 <Filters filterText={this.state.filterText} inStockOnly={this.state.inStockOnly} onFilter={this.handlerFilter} />
-                <ProductTable products={this.state.products} filterText={this.state.filterText} inStockOnly={this.state.inStockOnly} onDestroy={this.handleDestroy}/>
-                <ProductForm onSave={this.saveProduct} />
+                <ProductTable products={this.state.products} filterText={this.state.filterText} inStockOnly={this.state.inStockOnly} onDestroy={this.handleDestroy} onEdit={this.handleEdit} />
+                <ProductForm onSave={this.saveProduct} formProduct={this.state.formProduct}/>
             </div>
         );
     }

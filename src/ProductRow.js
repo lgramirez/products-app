@@ -5,12 +5,17 @@ class ProductRow extends React.Component {
     constructor(props) {
         super(props);
         this.destroy = this.destroy.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
     }
 
     destroy() {
         this.props.onDestroy(this.props.product.id);
     }
-    
+
+    handleEdit(e) {
+        this.props.onEdit(this.props.product.id);
+    }
+
     render() {
         return (
             <tr>
@@ -24,6 +29,9 @@ class ProductRow extends React.Component {
                 </td>
                 <td>
                     <button onClick={this.destroy}>x</button>
+                </td>
+                <td>
+                    <button onClick={this.handleEdit}>Edit</button>
                 </td>
             </tr>
         );

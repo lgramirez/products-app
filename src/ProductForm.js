@@ -64,6 +64,12 @@ class ProductForm extends React.Component {
         });
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.formProduct.name !== prevProps.formProduct.name) {
+          this.setState({product: this.props.formProduct})
+        }
+      }
+
     render() {
         let message = this.state.errors.control ? <span style={{color: 'red'}}>{this.state.errors.message}</span> : "";
         return (
