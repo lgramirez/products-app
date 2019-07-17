@@ -1,5 +1,4 @@
 import React from 'react';
-import { red } from 'ansi-colors';
 
 const RESET_VALUES = {id: '', category: '', price: '', stocked: false, name: ''};
 
