@@ -50,6 +50,9 @@ class Products extends React.Component {
     }
 
     handleDestroy(id) {
+        if(id === this.state.formProduct.id){
+            this.setState({formProduct: {id: '', category: '', price: '', stocked: false, name: ''}});
+        }
         this.setState((prevState) => {
             let products = prevState.products;
             delete products[id];
