@@ -50,9 +50,7 @@ class ProductForm extends React.Component {
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
 
-        if(name === "name" && value){
-            this.setState({errors: {message: "", control: false}});
-        }else{
+        if(name === "name" && value === ""){
             this.setState({errors: {message: "You have to send a name", control: true}});
         }
 
